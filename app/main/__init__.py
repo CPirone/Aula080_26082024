@@ -1,16 +1,5 @@
-from flask import Flask
-from dotenv import load_dotenv
-import os
+from flask import Blueprint
 
-load_dotenv()  # Carrega variáveis de ambiente do arquivo .env
+bp = Blueprint('main', __name__)
 
-
-def create_app():
-    app = Flask(__name__)
-    app.secret_key = os.getenv('SECRET_KEY')
-
-    # Importa e registra as rotas
-    from app.main.routes import main as main_blueprint
-    app.register_blueprint(main_blueprint)
-
-    return app
+from app.main import views
